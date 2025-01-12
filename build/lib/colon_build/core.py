@@ -19,14 +19,7 @@ def parse_package_xml(package_path):
     try:
         tree = ET.parse(os.path.join(package_path, 'package.xml'))
         root = tree.getroot()
-        
-        # Collect all types of dependencies
-        dependencies = []
-        dep_types = ['depend', 'build_depend', 'buildtool_depend', 'exec_depend', 'test_depend']
-        
-        for dep_type in dep_types:
-            dependencies.extend([dep.text for dep in root.findall(f'.//{dep_type}')])
-        
+        dependencies = [dep.text for dep in root.findall('.//depend')]
         logger.debug(f"Found dependencies for {os.path.basename(package_path)}: {dependencies}")
         return dependencies
     except ET.ParseError as e:
@@ -35,15 +28,10 @@ def parse_package_xml(package_path):
 
 def is_system_dependency(dep_name):
     """Check if a dependency is a system/external package."""
-    # Expanded list of common ROS2 and system package prefixes
-    system_deps = [
-        'rclpy', 'rclcpp', 
-        'std_msgs', 'geometry_msgs', 'sensor_msgs',
-        'builtin_interfaces', 'rosidl', 'ament',
-        'launch', 'ros2', 'python3', 'cv_bridge',
-        'ament_python', 'ament_cmake'
-    ]
-    return dep_name in system_deps or any(dep_name.startswith(prefix + '_') for prefix in system_deps)
+    # Common ROS2 and system package prefixes
+    system_prefixes = ['ros2', 'rclcpp', 'rclpy', 'std_msgs', 'geometry_msgs', 'sensor_msgs', 
+                    'builtin_interfaces', 'rosidl', 'ament', 'launch']
+    return any(dep_name.startswith(prefix) for prefix in system_prefixes)
 
 def detect_build_system(package_path):
     """Detect whether the package uses CMake or Python setup."""

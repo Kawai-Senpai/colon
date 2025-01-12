@@ -1,0 +1,2 @@
+[console_scripts]
+colon = colon_build.main:main

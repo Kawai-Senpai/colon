@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: colon
+Version: 0.1
+Summary: A light weight ROS 2 project management and build tool
+Home-page: https://github.com/Kawai-Senpai/colon
+Author: Ranit Bhowmick
+Author-email: bhowmickranitking@duck.com
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Build Tools
+Description-Content-Type: text/markdown
+Requires-Dist: cmake
+Requires-Dist: setuptools
+
+# Colon
+
+A ROS2 build tool that handles dependency resolution and package building.
+
+## Installation
+
+```bash
+pip install -e .
+```
+
+## Usage
+
+From within a ROS2 workspace:
+```bash
+colon build
+```
+
+Or specify workspace path:
+```bash
+colon build /path/to/workspace
+```
+
+Use verbose output:
+```bash
+colon build -v
+```
+
+## Development
+
+1. Create a virtual environment
+2. Install dependencies: `pip install -r requirements.txt`
+3. Install in development mode: `pip install -e .`

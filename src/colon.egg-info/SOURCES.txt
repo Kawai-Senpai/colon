@@ -1,0 +1,13 @@
+README.md
+setup.py
+src/colon.egg-info/PKG-INFO
+src/colon.egg-info/SOURCES.txt
+src/colon.egg-info/dependency_links.txt
+src/colon.egg-info/entry_points.txt
+src/colon.egg-info/requires.txt
+src/colon.egg-info/top_level.txt
+src/colon_build/__init__.py
+src/colon_build/build.py
+src/colon_build/core.py
+src/colon_build/dependency.py
+src/colon_build/main.py
